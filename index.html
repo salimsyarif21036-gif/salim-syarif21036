@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salim Portfolio Design</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Salim <span>Syarief</span></a>
+        <div class="menu">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+        <nav class="navbar">
+            <a href="#Home">home</a>
+            <a href="#Services">services</a>
+            <a href="#Testimonials">testimonials</a>
+            <a href="#Contact">contact</a>
+        </nav>
+    </header>
+
+    <section class="home" id="Home">
+        <div class="content">
+            <h1>hi, it's <span>Salim</span></h1>
+            <h3 class="text-animation">i'm a <span></span></h3>
+            <p>Saya seorang siswa jurusan Rekayasa Perangkat Lunak 
+                di SMK Mandalahayu Kota Bekasi yang menggemari dunia teknologi dan informatika.
+                Berpengalaman dalam membuat desain web.</p>
+            <div class="icons">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+                <i class="fab fa-twitter" aria-hidden="true"></i>
+            </div>
+            <div class="flex-btn">
+                <a href="#" class="btn hire">hire</a>
+            </div>
+        </div>
+        <img src="images/sa.jpg" alt="">
+    </section>
+
+<!-- Service Section -->
+    <section class="services" id="Services">
+        <h2 class="heading">services</h2>
+        <div class="box-container">
+            <div class="box">
+                <h3>Database</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                     Fugiat vel quibusdam necessitatibus repellendus. 
+                    Tempora atque totam debitis corporis similique ab?</p>
+                
+            </div>
+            <div class="box">
+                <h3>UI Design</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                     Fugiat vel quibusdam necessitatibus repellendus. 
+                    Tempora atque totam debitis corporis similique ab?</p>
+                
+            </div>
+            <div class="box">
+                <h3>Frontend</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                     Fugiat vel quibusdam necessitatibus repellendus. 
+                    Tempora atque totam debitis corporis similique ab?</p>
+                
+            </div>
+            <div class="box">
+                <h3>Backend</h3>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                     Fugiat vel quibusdam necessitatibus repellendus. 
+                    Tempora atque totam debitis corporis similique ab?</p>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+
+    <section class="testimonials" id="Testimonials">
+        <h2 class="heading">testimonials</h2>
+        <div class="box-container">
+            <div class="box">
+                <img src="images/TEST.jpg" alt="">
+                <h3>Raji</h3>
+                <div class="stars">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </div>
+                <p>ALL GOOD, PERFECT.</p>
+            </div>
+            <div class="box">
+                <img src="images/TEST.jpg" alt="">
+                <h3>Aji</h3>
+                <div class="stars">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </div>
+                <p>NICE SKILL</p>
+            </div>
+            <div class="box">
+                <img src="images/TEST.jpg" alt="">
+                <h3>Pak Aji</h3>
+                <div class="stars">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </div>
+                <p>GOOD ATTITUDE</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+
+    <section class="contact" id="Contact">
+        <h2 class="heading">contact <span>me</span></h2>
+        <div class="form-container">
+
+<div class="alert alert-success alert-dismissible fade show d-none my-alert" role="alert">
+  <strong>Terimakasih!</strong> Pesan anda telah terkirim
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+            <form name='wpu-contact-form'>
+                <div class="inputs">
+                    <input type="text" placeholder="full name" class="input" name="nama">
+                    <input type="email" placeholder="email" class="input" name="email">
+                    <input type="number" placeholder="phone number" class="input" name="nomor">
+                    <input type="text" placeholder="subject" class="input" name="subjek">
+                </div>
+                <div class="text">
+                    <textarea placeholder="your message" name="pesan"></textarea>
+                    <button type="submit" class="btn btn-primary btn-kirim">Send Massage</button>
+                    <button class="btn btn-primary btn-loading d-none" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                         <span role="status">Loading...</span>
+                            </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+
+    <footer class="footer">
+        <div class="icons">
+            <i class="fab fa-instagram" aria-hidden="true"></i>
+            <i class="fab fa-twitter" aria-hidden="true"></i>
+        </div>
+        <nav class="navbar">
+            <a href="#Home">home</a>
+            <a href="#Services">services</a>
+            <a href="#Testimonials">testimonials</a>
+            <a href="#Contact">contact</a>
+        </nav>
+        <div class="credit"><p><i class="fa fa-copyright" aria-hidden="true"></i> Salim Syarief <span>||</span> all rights reserved    </p></div>
+    </footer>
+
+    <script src="script.js"></script>
+
+             <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbx2I4P5ARGm1K0tcCiGckA5TMIXZX2bnSQxNjtou2m5KMGQktnvESxRgKdsp98s4794cA/exec'
+  const form = document.forms['wpu-contact-form'];
+  const btnKirim = document.querySelector('.btn-kirim');
+  const btnLoading = document.querySelector('.btn-loading');
+  const myAlert = document.querySelector('.my-alert');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+
+    // tampilkan tombol loading, hilangkan tombol kirim //
+    btnLoading.classList.toggle('d-none');
+    btnKirim.classList.toggle('d-none');
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+    // tampilkan tombol kirim, hilangkan tombol loading //
+         btnLoading.classList.toggle('d-none');
+            btnKirim.classList.toggle('d-none');
+    // tampilkan alert //
+            myAlert.classList.toggle('d-none');
+    // reset form //  
+            form.reset();
+        console.log('Success!', response)
+    })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+</body>
+</html>
