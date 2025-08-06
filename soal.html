@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ilmu Pengetahuan Salim</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(90deg, rgba(251, 168, 29, 1) 0%, rgba(73, 205, 230, 1) 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #F0F0F0;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 650px;
+    }
+    .title {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .button {
+      background-color: #D9D9D9;
+      border: none;
+      border-radius: 3px;
+      padding: 10px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .button.active {
+      background-color: #ffa726;
+      color: white;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .question p {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .option {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #D9D9D9;
+      border-radius: 5px;
+      background-color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .option:hover {
+      background-color: #eee;
+    }
+    .option.selected {
+      background-color: #ffa726;
+      color: white;
+    }
+    .submit-button {
+      background-color: #3d6e85;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Ilmu Pengetahuan Salim</div>
+    <form name="jawaban">
+      <textarea name="jawaban" id="jawaban" hidden></textarea>
+      <div class="grid" id="question-buttons"></div>
+      <div class="question" id="question-area"></div>
+      <input type="hidden" name="jawaban"/>
+      <button type="submit" class="submit-button" name='jawaban'>Submit</button>
+    </form>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Siapa nama anak Menteri Pertanian Mongolia tahun 2023?",
+        options: ["A. Siti", "B. Bayarmaa", "C. Altan", "D. Naran", "E. Tsedenbal"]
+      },
+      {
+        question: "Apa ibu kota negara Laos?",
+        options: ["A. Bangkok", "B. Hanoi", "C. Phnom Penh", "D. Vientiane", "E. Naypyidaw"]
+      },
+      {
+        question: "Sungai Nil terdapat di benua?",
+        options: ["A. Asia", "B. Amerika", "C. Afrika", "D. Australia", "E. Eropa"]
+      },
+      {
+        question: "Sungai Nil terdapat di benua?",
+        options: ["A. Asia", "B. Amerika", "C. Afrika", "D. Australia", "E. Eropa"]
+      }
+    ];
+
+    while (questions.length < 25) {
+      questions.push({
+        question: `Soal dummy nomor ${questions.length + 1}?`,
+        options: ["A. Pilihan A", "B. Pilihan B", "C. Pilihan C", "D. Pilihan D", "E. Pilihan E"]
+      });
+    }
+
+    const questionButtonsContainer = document.getElementById("question-buttons");
+    const questionArea = document.getElementById("question-area");
+    const userAnswers = new Array(questions.length).fill(null);
+    let currentQuestionIndex = 0;
+
+    for (let i = 0; i < questions.length; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i + 1;
+      btn.classList.add("button");
+      btn.dataset.index = i;
+
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentQuestionIndex = i;
+        showQuestion(i);
+      });
+
+      questionButtonsContainer.appendChild(btn);
+    }
+
+    function showQuestion(index) {
+      const q = questions[index];
+      let html = `<p>${q.question}</p>`;
+      q.options.forEach((opt, i) => {
+        const selected = userAnswers[index] === i ? 'selected' : '';
+        html += `<button type="button" class="option ${selected}" onclick="selectOption(${index}, ${i})">${opt}</button>`;
+      });
+      questionArea.innerHTML = html;
+    }
+
+    function selectOption(questionIndex, optionIndex) {
+      userAnswers[questionIndex] = optionIndex;
+      showQuestion(questionIndex); // refresh view
+    }
+
+    // Show first question on load
+    document.querySelector(".button").classList.add("active");
+    showQuestion(0);
+
+    // Submit to Google Sheets
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwXP27ONtgv72sjgPmb-XtST5EHIShZeO6eKtO7VETHYjv_ailGAioX-NWl55pt51f3Ag/exec';
+    const form = document.forms['jawaban'];
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const unanswered = userAnswers.filter(ans => ans === null).length;
+      if (unanswered > 0) {
+        return;
+      }
+
+      const jawabanText = userAnswers.map((ans, i) => `Soal ${i + 1}: ${questions[i].options[ans] || '-'}`).join('\n');
+      document.getElementById('jawaban').value = jawabanText;
+
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+        .then(response => {
+          alert('Jawaban berhasil dikirim!');
+          console.log('Success!', response);
+        })
+        .catch(error => {
+          alert('Gagal mengirim jawaban.');
+          console.error('Error!', error.message);
+        });
+    });
+  </script>
+</body>
+</html>
